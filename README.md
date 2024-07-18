@@ -145,8 +145,8 @@ Below you can find all instructions to replicate my environment.
 ## Contact
 
 Roberto Júnior - [@roberto-juniorjp](https://www.linkedin.com/in/roberto-juniorjp/)
-Email - [juniorjp@gmail.com](mailto:juniorjp@gmail.com)
-Whatsapp - [+55 (83) 99922-2312](https://api.whatsapp.com/send?phone=5583999222312)
+<br>Email - [juniorjp@gmail.com](mailto:juniorjp@gmail.com)
+<br>Whatsapp - [+55 (83) 99922-2312](https://api.whatsapp.com/send?phone=5583999222312)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
