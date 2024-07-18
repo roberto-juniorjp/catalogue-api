@@ -18,10 +18,16 @@ namespace CatalogueAPI.Controllers
             _context = context;
         }
 
+        [HttpGet("products")]
+        public ActionResult<IEnumerable<Category>> GetCategoriesProducts()
+        {
+            var categories = _context.Categories.Include(p => p.Products).AsNoTracking().ToList();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories.AsNoTracking().ToList();
             if (categories is null)
             {
                 return NotFound("Categories not found.");
