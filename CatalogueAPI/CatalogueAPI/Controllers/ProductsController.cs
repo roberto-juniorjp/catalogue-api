@@ -31,13 +31,13 @@ namespace CatalogueAPI.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name="GetProduct")]
-        public ActionResult<Product> Get(int id)
+        [HttpGet("{productId:int}", Name="GetProduct")]
+        public ActionResult<Product> Get(int productId)
         {
             try
             {
-                var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
-                return product != null ? product : NotFound("Product not found.");
+                var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+                return product != null ? product : NotFound("Product with id {productId} not found.");
             }
             catch (Exception)
             {
@@ -50,7 +50,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (product == null) return BadRequest();
+                if (product == null) return BadRequest("There was a problem.");
                 
                 _context.Products.Add(product);
                 _context.SaveChanges();
@@ -67,7 +67,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (productId != product.ProductId) return BadRequest();
+                if (productId != product.ProductId) return BadRequest("There was a problem updating product with id {productId}.");
 
                 _context.Entry(product).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -86,7 +86,7 @@ namespace CatalogueAPI.Controllers
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
 
-                if (product is null) return NotFound("Product not found.");
+                if (product is null) return NotFound("Product with id {productId} not found.");
 
                 _context.Products.Remove(product);
                 _context.SaveChanges();

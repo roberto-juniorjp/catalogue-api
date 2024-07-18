@@ -46,13 +46,13 @@ namespace CatalogueAPI.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name = "GetCategory")]
-        public ActionResult<Category> Get(int id)
+        [HttpGet("{categoryId:int}", Name = "GetCategory")]
+        public ActionResult<Category> Get(int categoryId)
         {
             try
             {
-                var category = _context.Categories.FirstOrDefault(p => p.CategoryId == id);
-                return category is not null ? category : NotFound("Category not found.");
+                var category = _context.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
+                return category is not null ? category : NotFound("Category with id {categoryId} not found.");
             }
             catch (Exception)
             {
@@ -65,7 +65,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (category == null) return BadRequest();
+                if (category == null) return BadRequest("There was a problem.");
 
                 _context.Categories.Add(category);
                 _context.SaveChanges();
@@ -82,7 +82,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (categoryId != category.CategoryId) return BadRequest();
+                if (categoryId != category.CategoryId) return BadRequest("There was a problem updating category with id {categoryId}.");
 
                 _context.Entry(category).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -100,7 +100,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var category = _context.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
-                if (category is null) return NotFound("Category not found.");
+                if (category is null) return NotFound("Category with id {categoryId} not found.");
 
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
