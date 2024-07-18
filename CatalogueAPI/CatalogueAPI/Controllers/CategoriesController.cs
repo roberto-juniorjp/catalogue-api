@@ -22,6 +22,7 @@ namespace CatalogueAPI.Controllers
         public ActionResult<IEnumerable<Category>> GetCategoriesProducts()
         {
             var categories = _context.Categories.Include(p => p.Products).AsNoTracking().ToList();
+            return categories;
         }
 
         [HttpGet]
