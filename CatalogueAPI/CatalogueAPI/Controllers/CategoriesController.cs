@@ -21,14 +21,14 @@ namespace CatalogueAPI.Controllers
         [HttpGet("products")]
         public ActionResult<IEnumerable<Category>> GetCategoriesProducts()
         {
-            var categories = _context.Categories.Include(p => p.Products).AsNoTracking().ToList();
+            var categories = _context.Categories.Include(p => p.Products).Where(c => c.CategoryId <= 5).ToList();
             return categories;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-            var categories = _context.Categories.AsNoTracking().ToList();
+            var categories = _context.Categories.AsNoTracking().Take(10).ToList();
             if (categories is null)
             {
                 return NotFound("Categories not found.");
