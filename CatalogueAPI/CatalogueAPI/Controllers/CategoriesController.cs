@@ -10,16 +10,7 @@ namespace CatalogueAPI.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        /*
-         try
-         {
-            
-         }
-         catch (Exception)
-         {
-            return StatusCode(StatusCodes.Status500InternalServerError, "There was a problem processing your request.");
-         }
-        */
+
         private readonly CatalogueDbContext _context;
 
         public CategoriesController(CatalogueDbContext context)
@@ -33,7 +24,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var categories = _context.Categories.Include(p => p.Products).Where(c => c.CategoryId <= 5).ToList();
-                return categories;
+                return categories != null ? categories : NotFound("Products not found.");
             }
             catch (Exception)
             {
@@ -47,11 +38,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var categories = _context.Categories.AsNoTracking().Take(10).ToList();
-                if (categories is null)
-                {
-                    return NotFound("Categories not found.");
-                }
-                return categories;
+                return categories is not null ? categories : NotFound("Categories not found.");
             }
             catch (Exception)
             {
@@ -65,11 +52,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var category = _context.Categories.FirstOrDefault(p => p.CategoryId == id);
-                if (category == null)
-                {
-                    return NotFound("Category not found.");
-                }
-                return category;
+                return category is not null ? category : NotFound("Category not found.");
             }
             catch (Exception)
             {
@@ -82,10 +65,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (category == null)
-                {
-                    return BadRequest();
-                }
+                if (category == null) return BadRequest();
 
                 _context.Categories.Add(category);
                 _context.SaveChanges();
@@ -102,10 +82,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (categoryId != category.CategoryId)
-                {
-                    return BadRequest();
-                }
+                if (categoryId != category.CategoryId) return BadRequest();
 
                 _context.Entry(category).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -123,10 +100,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var category = _context.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
-                if (category is null)
-                {
-                    return NotFound("Category not found.");
-                }
+                if (category is null) return NotFound("Category not found.");
 
                 _context.Categories.Remove(category);
                 _context.SaveChanges();

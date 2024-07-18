@@ -23,11 +23,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var products = _context.Products.AsNoTracking().Take(10).ToList();
-                if (products is null)
-                {
-                    return NotFound("Products not found.");
-                }
-                return products;
+                return products != null ? products : NotFound("Products not found.");
             }
             catch (Exception)
             {
@@ -41,11 +37,7 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
-                if (product == null)
-                {
-                    return NotFound("Product not found.");
-                }
-                return product;
+                return product != null ? product : NotFound("Product not found.");
             }
             catch (Exception)
             {
@@ -58,11 +50,8 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (product == null)
-                {
-                    return BadRequest();
-                }
-
+                if (product == null) return BadRequest();
+                
                 _context.Products.Add(product);
                 _context.SaveChanges();
                 return new CreatedAtRouteResult("GetProduct", new { id = product.ProductId }, product);
@@ -78,10 +67,7 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (productId != product.ProductId)
-                {
-                    return BadRequest();
-                }
+                if (productId != product.ProductId) return BadRequest();
 
                 _context.Entry(product).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -99,10 +85,8 @@ namespace CatalogueAPI.Controllers
             try
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-                if (product is null)
-                {
-                    return NotFound("Product not found.");
-                }
+
+                if (product is null) return NotFound("Product not found.");
 
                 _context.Products.Remove(product);
                 _context.SaveChanges();
