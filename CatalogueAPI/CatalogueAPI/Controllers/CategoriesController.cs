@@ -65,11 +65,11 @@ namespace CatalogueAPI.Controllers
         {
             try
             {
-                if (category == null) return BadRequest("There was a problem.");
+                if (category is null) return BadRequest("There was a problem.");
 
                 _context.Categories.Add(category);
                 _context.SaveChanges();
-                return new CreatedAtRouteResult("GetCategory", new { id = category.CategoryId }, category);
+                return new CreatedAtRouteResult("GetCategory", new { categoryId = category.CategoryId }, category);
             }
             catch (Exception)
             {

@@ -54,7 +54,7 @@ namespace CatalogueAPI.Controllers
                 
                 _context.Products.Add(product);
                 _context.SaveChanges();
-                return new CreatedAtRouteResult("GetProduct", new { id = product.ProductId }, product);
+                return new CreatedAtRouteResult("GetProduct", new { productId = product.ProductId }, product);
             }
             catch (Exception)
             {
