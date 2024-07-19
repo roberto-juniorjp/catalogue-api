@@ -122,9 +122,9 @@ Below you can find all instructions to replicate my environment.
   dotnet tool install --global dotnet-ef
   ```
 
-  ### How to Run
+### How to Run
 
-  Now that you have everything set up. To run the project, follow the instructions below:
+Now that you have everything set up. To run the project, follow the instructions below:
 
 * **Visual Studio 2022**
 
