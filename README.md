@@ -159,6 +159,7 @@ Roberto Júnior - [@roberto-juniorjp](https://www.linkedin.com/in/roberto-junior
 
 * [Img Shields](https://shields.io)
 * [Robert Santos](https://github.com/RO-HSA)
+* [Aleatório](https://aleatorio.dev.br/posts/como-escrever-readme/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
