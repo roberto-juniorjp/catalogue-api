@@ -130,6 +130,8 @@ Below you can find all instructions to replicate my environment.
 ## Roadmap
 
 - [x] Build a Back-end Rest API with dotNet ASP.NET and Entity Framework
+- [ ] Create a Docker image with the project
+- [ ] Deploy the Docker image to a Cloud platform
 - [ ] Build React Front-end
 - [ ] Consume the Back-end Rest API with React Front-end
 - [ ] Build Angular Front-end
