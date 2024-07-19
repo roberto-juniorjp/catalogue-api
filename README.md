@@ -41,7 +41,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#how-to-run">Prerequisites</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#how-to-run">How to Run</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -100,7 +101,7 @@ Heres the frameworks used in the project.
 
 You will need the dotNet environment along with a few tools to make sure the project can run locally.
 
-### How To Run
+### Requirements
 
 Below you can find all instructions to replicate my environment.
 * **Operating System**
@@ -111,6 +112,7 @@ Below you can find all instructions to replicate my environment.
   
 * **Installers**
   <br>[dotNet Downloader](https://dotnet.microsoft.com/pt-br/download)
+  <br>[Visual Studio Community][visual-studio-url]
   <br>[MySQL Server](https://dev.mysql.com/downloads/mysql/)
   <br>[mySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 
@@ -119,6 +121,31 @@ Below you can find all instructions to replicate my environment.
   *Entity Framework*
   dotnet tool install --global dotnet-ef
   ```
+
+  ### How to Run
+
+  Now that you have everything set up. To run the project, follow the instructions below:
+
+* **Visual Studio 2022**
+
+  - Open the sln file on the solution folder. it will open the project inside Visual Studio. If the icon is not associated, it will ask you to associate. When this happens, select Visual Studio.
+  - Inside Visual Studio, select IIS Express on the top menu and run it.
+  - It will open straight into Swagger screen. Here you go!
+  <br>![image](https://github.com/user-attachments/assets/5481adc7-f61d-4e38-9a85-f32ab69ca1e6)
+
+* **Command Prompt (CLI)**
+
+  - With all requisites installed, download the project on your computer.
+  - Open your cli that recognizes the dotnet installed prompts (you can test with the command 'dotnet --version').
+  - Navigate to the project folder that contains the csproj file.
+  - run the command:
+    ```sh
+    dotnet run -p "CatalogueAPI.csproj" start "" http://localhost
+    ```
+  - Take a look at the port he will allocate for it
+    ![image](https://github.com/user-attachments/assets/80463f5a-963f-4f14-970b-c9e8c046bc64)
+  - Open the URL on your browser adding /swagger at the end (eg: http://localhost:5121/swagger)
+  - Enjoy!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -174,6 +201,7 @@ Roberto Júnior - [@roberto-juniorjp](https://www.linkedin.com/in/roberto-junior
 [dotnet-url]: https://dotnet.microsoft.com/en-us/download
 [csharp]: https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=dotnet&logoColor=white
 [csharp-url]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+[visual-studio-url]: https://visualstudio.microsoft.com/pt-br/vs/community/
 [mysql-server]: https://img.shields.io/badge/MySQL%20Server-4479A1?style=for-the-badge&logo=mysql&logoColor=white
 [mysql-server-url]: https://dev.mysql.com/downloads/mysql/
 [mysql-workbench]: https://img.shields.io/badge/MySQL%20Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white
